@@ -1,0 +1,27 @@
+{
+  "name": "cours",
+  "version": "0.0.1",
+  "description": "TP cours nodejs et mongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarba3/Nodejs_cours.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jarba3/Nodejs_cours/issues"
+  },
+  "homepage": "https://github.com/jarba3/Nodejs_cours#readme",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "mongoose": "^4.1.5",
+    "morgan": "^1.6.1"
+  }
+}
