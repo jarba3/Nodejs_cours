@@ -2,7 +2,19 @@
 
 // Public home
 exports.home = function (req, res) {
-    res.send('Hello Home');
+    models.Article.find()
+        .sort({
+            title: -1
+        })
+        .exec(function (err, articles) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render('home', {
+                    articles: articles
+                });
+            }
+        });
 };
 
 // Admin dashboard

@@ -5,15 +5,17 @@ block content
   div
     form(method="POST", name="addArticle")
       .form-group
-        input.form-control(type="text", name="title", placeholder="Titre")
+        input.form-control(type="text", name="title", placeholder="Titre", value="#{form.title}")
       .form-group
-        input.form-control(type="text", name="author", placeholder="Auteur")
+        input.form-control(type="text", name="author", placeholder="Auteur", value="#{form.author}")
       .form-group
         textarea.form-control(name="teaser", placeholder="Accroche")
+          | #{form.teaser}
       .form-group
         textarea.form-control(name="content", placeholder="Contenu", rows="10")
+          | #{form.content}
       .checkbox
         label
-          input(type="checkbox", name="published")
+          input(type="checkbox", name="published", checked=(form.published ? "checked" : undefined))
           | Publier
       input.btn.btn-info(type="submit")

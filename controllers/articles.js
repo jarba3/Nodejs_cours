@@ -4,15 +4,11 @@
 exports.findOne = function (req, res) {
     var id = req.params.id;
 
-    models.Article.findOne({
-        _id: id
-    }, function (err, article) {
-        /*        if (!err) {
-                    res.render('page', {message: "Introuvable"})
-                }*/
-        /*        res.json(article);*/
+    models.Article.findOne({_id: id}, function (err, article) {
+        if (!err) {
+            res.render('admin/article/details', {article: article});
+        }
     });
-    res.render('admin/article/details');
 };
 
 // Récupérer tous les articles
@@ -21,6 +17,7 @@ exports.findAll = function (req, res) {
                   .sort({title: -1})
                   .exec(function (err, articles) {
         if (err) {
+            // logger.write("une erreur", "warning");
             console.log(err);
         } else {
             res.render('admin/article/list', {articles: articles});
@@ -49,16 +46,24 @@ exports.add = function (req, res) {
             }
         });
     } else {
-        res.render('admin/article/form');
+        res.render('admin/article/form', {form: articleForm});
     }
 };
 
 // Mettre à jour un article
 exports.update = function (req, res) {
+    var options = {_id: req.params.id};
 
-    res.render('admin/article/form', {
-        "form": article
-    });
+    if (req.method === 'POST') {
+        req.body.published = req.body.published ? true : false;
+        models.Article.update(options, req.body, function (err) {
+            res.redirect('/admin/blog');
+        });
+    } else {
+        models.Article.findOne(options, function (err, article) {
+            res.render('admin/article/form', {"form": article });
+        });
+    }
 };
 
 // Supprimer un article
@@ -70,12 +75,6 @@ exports.delete = function (req, res) {
         res.redirect('/admin/blog');
     });
 };
-
-
-
-
-
-
 
 
 
