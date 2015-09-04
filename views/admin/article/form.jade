@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  h1 Ajouter un article
+  div
+    form(method="POST", name="addArticle")
+      .form-group
+        input.form-control(type="text", name="title", placeholder="Titre")
+      .form-group
+        input.form-control(type="text", name="author", placeholder="Auteur")
+      .form-group
+        textarea.form-control(name="teaser", placeholder="Accroche")
+      .form-group
+        textarea.form-control(name="content", placeholder="Contenu", rows="10")
+      .checkbox
+        label
+          input(type="checkbox", name="published")
+          | Publier
+      input.btn.btn-info(type="submit")
